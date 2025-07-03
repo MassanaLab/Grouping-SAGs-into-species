@@ -197,4 +197,113 @@ do
 done
 ```
 
+### 6 - Merge QBT reports
+
+```
+rm(list = ls())
+
+library(readr)
+library(dplyr)
+library(tidyr)
+library(readxl)
+
+#DATA_DIR <- "lustre/qbt_test_filter/all_reports/"
+
+getwd()
+
+#setwd("Desktop/ICM-CSIC/CESGA/QBT_DAVID_8_COASS/")
+
+rm(list = ls())
+
+for (x in c(1)) {
+    
+    DATA_DIR <- "all_reports/"
+    
+    quast <- read_tsv(sprintf("%squast_report.txt", DATA_DIR))
+    busco <- read_tsv(sprintf("%sbusco_report.txt", DATA_DIR))
+    tiara <- read_tsv(sprintf("%stiara_report.txt", DATA_DIR), col_names = c('Sample', 'tiara'))
+    
+    tiara <- 
+        tiara %>% 
+        separate(tiara, sep = ': ', into = c('tax', 'n')) %>% 
+        mutate(n = as.numeric(n)) %>% 
+        group_by(Sample, tax) %>% 
+        summarise(n = sum(n), .groups = 'drop') %>% 
+        pivot_wider(names_from = tax, values_from = n, values_fill = 0) %>%
+        mutate(across(where(is.numeric), ~round(., 1))) %>%  # Round numeric columns
+        select(
+            Sample,
+            everything(),
+            -any_of("organelle")
+        ) %>%
+        rowwise() %>%  # Ensure `all_tiara` sums only included columns
+        mutate(
+            all_tiara = sum(c_across(where(is.numeric)), na.rm = TRUE),
+            `%-euk` = round(100 * ifelse("eukarya" %in% names(.), eukarya / all_tiara, 0), 1),
+            `%-prok` = round(100 * sum(c_across(matches("bacteria|prokarya|archaea")), na.rm = TRUE) / all_tiara, 1)
+        ) %>%
+        ungroup() %>%
+        select(
+            Sample,
+            `%-euk`,
+            `%-prok`,
+            any_of(c("eukarya", "bacteria", "archaea", "prokarya", "unknown", "mitochondrion", "plastid")),  # Keep only available columns in preferred order
+            everything(),  # Any remaining columns
+            -all_tiara,  # Temporarily remove all_tiara
+            all_tiara  # Add all_tiara at the end
+        )
+    
+    
+    
+    
+    
+
+    
+    base <- data.frame(matrix(NA, nrow = nrow(quast), ncol = 14))
+    
+    colnames(base) <- c("Sample", "Mb (>= 0 )", "Mb (> =1k)", "Mb (>= 3kb)", "Mb (>= 5Kb)", "contigs (>= 1Kb)", "contigs (>= 3Kb)", "contigs (>= 5Kb)", "Largest contig", "GC (%)", "N50", "Complete BUSCOs", "Fragmented BUSCOs", "Completeness (%) (out of 255)")
+    
+    
+    ### QUAST 
+    
+    base$Sample <- quast$Sample
+    
+    base[2:5] <- round(quast[7:10] / 1000000, 2)
+    
+    base[6:8] <- quast[4:6]
+    
+    base$`Largest contig` <- quast$`Largest contig`
+    
+    base$`GC (%)` <- quast$`GC (%)`
+    
+    base$N50 <- quast$N50
+    
+    
+    ### BUSCO
+    
+    colnames(busco) <- c("Sample", "X", "Results", "Complete", "Complete and Single", "Complete and Duplicated", "Fragmented", "Missing", "X2", "X3", "X4")
+    
+    base$`Complete BUSCOs` <-  busco$Complete
+    
+    base$`Fragmented BUSCOs` <- busco$Fragmented
+    
+    base$`Completeness (%) (out of 255)` <- round(100*(base$`Complete BUSCOs` + base$`Fragmented BUSCOs`)/255, 2)
+    
+    
+    ### TIARA
+    
+    #tiara <- select(tiara2, Sample, colnames(tiara2)[3:ncol(tiara2)], all_tiara)
+    
+    base2 <- left_join(base, tiara, by = "Sample")
+    
+    ### Write final summary table
+    
+    #colnames(base2) <- c("Sample", "Mb (>= 0 )", "Mb (> =1k)", "Mb (>= 3kb)", "Mb (>= 5Kb)", "contigs (>= 1Kb)", "contigs (>= 3Kb)", "contigs (>= 5Kb)", "Largest contig", "GC (%)", "N50", "Complete BUSCOs", "Fragmented BUSCOs", "Completeness (%) (out of 255)", colnames(tiara)[3:ncol(tiara)], "all tiara")
+    
+    base2[is.na(base2)] <- 0
+    
+    write.table(base2, file = "QBT_summary_david_8_coass.tsv", sep = "\t", row.names = FALSE)   
+}
+```
+
 Next steps are explained [here](https://github.com/MassanaLab/SAGs-pipeline?tab=readme-ov-file#braker), starting with BRAKER.
