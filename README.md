@@ -196,3 +196,5 @@ do
   echo -e "${SAMPLE}\t${REPORT}" >> ${OUT_FILE}
 done
 ```
+
+Next steps are explained [here](https://github.com/MassanaLab/SAGs-pipeline?tab=readme-ov-file#braker), starting with BRAKER.
