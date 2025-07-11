@@ -4,7 +4,7 @@
 
 # ANI
 
-# Coassemblies
+# Concatenate reads from selected samples
 
 ### 0.1 - Prepare reads
 
