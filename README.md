@@ -1,20 +1,24 @@
-# BLAST
+# 1.1 - Change Names & Concatenate
+
+# 1.2 - makeblastdb
+
+# 1.3 - BLAST
 
 ## Selection from BLAST results
 
-# ANI
+# 2 - ANI
 
 # Concatenate reads from selected samples
 
-### 0.1 - Prepare reads
+### 3.1 - Prepare reads
 
 Start by putting in a folder all the reads from the different SAGs you want to assembly toghether.
 
-### 0.2 -  Prepare lists
+### 3.2 -  Prepare lists
 
 Make a .txt file containing all the names of needed individual SAGs that will form each coassembly. Make one .txt file per coassembly, and name this file like x_lists.txt. Ideally, put all this lists in a folder.
 
-### 1 - Combine reads
+### 3.3 - Combine reads
 
 ```
 OUT=lustre/coassemblies_v5_combined_reads
@@ -47,7 +51,7 @@ do
 done
 ```
 
-### 2 - SPAdes Assebmly
+### 4 - SPAdes Assebmly
 
 ```
 #!/bin/bash
@@ -78,7 +82,7 @@ spades.py \
  -o ${OUT_DIR}
 ```
 
-### 3 - Quast, BUSCO, Tiara
+### 5 - Quast, BUSCO, Tiara
 
 Explained in the [QBT-pipeline](https://github.com/MassanaLab/QBT-pipeline).
 
