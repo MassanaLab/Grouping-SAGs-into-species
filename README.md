@@ -8,7 +8,21 @@
 
 ### 1.4 - Selection from BLAST results
 
-# 2 - Average Nucleotide Identity
+# 2 - Average Nucleotide Identity (ANI)
+
+### 2.1 - Copy needed scaffolds
+
+### 2.2 - Create lists
+
+### 2.3 - makeblastdb for each sample
+
+### 2.4 - BLAST and calculate ANI with formula
+
+### 2.5 - Process ANI results
+
+### 2.6 - Put all ANI matrices together
+
+
 
 # 3 - Concatenate reads from selected samples
 
