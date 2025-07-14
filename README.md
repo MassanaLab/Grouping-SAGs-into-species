@@ -1,14 +1,16 @@
-# 1.1 - Change Names & Concatenate
+# 1 - BLAST
 
-# 1.2 - makeblastdb
+### 1.1 - Change Names & Concatenate
 
-# 1.3 - BLAST
+### 1.2 - makeblastdb
 
-## Selection from BLAST results
+### 1.3 - BLAST
 
-# 2 - ANI
+### 1.4 - Selection from BLAST results
 
-# Concatenate reads from selected samples
+# 2 - Average Nucleotide Identity
+
+# 3 - Concatenate reads from selected samples
 
 ### 3.1 - Prepare reads
 
