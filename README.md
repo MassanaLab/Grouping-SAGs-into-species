@@ -1,4 +1,4 @@
-# 1 - BLAST
+# 1 - BLAST: Comparing proteins between SAGs
 
 ### 1.1 - Change Names & Concatenate
 
