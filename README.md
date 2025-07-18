@@ -10,6 +10,7 @@
 
 ### 1.4 - Filter and selection the best BLAST hits
 
+
 ## 2 - Average Nucleotide Identity (ANI)
 
 ### 2.1 - Extract the needed scaffolds
@@ -25,7 +26,6 @@
 ### 2.6 - Merge all ANI matrices
 
 
-
 ## 3 - Coassembly Preparation: Concatenating Reads
 
 ### 3.1 - Gather reads
@@ -38,33 +38,3 @@ Make a .txt file containing all the names of needed individual SAGs that will fo
 
 ### 3.3 - Merge reads for each coassembly
 
-```
-OUT=lustre/coassemblies_v5_combined_reads
-
-rm -r ${OUT}
-
-mkdir -p ${OUT}
-
-
-n1=0
-n2=$(ls lustre/coass_v5_lists_clean/ | wc -l)
-
-
-for FILE in $(ls lustre/coass_v5_lists_clean/)
-do
-
-        n1=$((n1 + 1))
-
-        FN=$(echo $FILE | awk -F "_" '{print $1"_"$2"_"$3}' | sed 's/.txt//g')
-
-        echo "Combining ${FN} (${n1} of ${n2} taxa):"
-
-        for SAMPLE in $(cat lustre/coass_v5_lists_clean/${FILE})
-        do
-          	echo "Adding ${SAMPLE}..."
-                cat store/reads_P_AH_GC/${SAMPLE}* >> ${OUT}/${FN}_combined_reads.fastq.gz
-
-        done
-
-done
-```
