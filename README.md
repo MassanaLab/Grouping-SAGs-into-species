@@ -3,10 +3,14 @@
 ## 1 - BLAST: Comparing proteins between SAGs
 
 ### 1.1 - Add name to header and concatenate together all protein files  
+
+The first step is to add the name of each sample to its fasta headers. In our case, we had protein files from two different sources, so we repeat this proces of adding the header two times. Then, just concatenate all protein files together.
+
 [1.1-change_names_concatenate.sh](scripts/1.1-change_names_concatenate.sh)  
-(in my case I have two sources...)
 
 ### 1.2 - Build BLAST Database (`makeblastdb`)  
+
+Once we have all protein fasta files together we must generate a blast database. We do this using `makeblastdb`, in which we indicate the fasta file we need to make the database (`-in`), the type of database we want (`-dbtype`) which in our case is a protein database (`prot`). 
 [1.2-makeblastdb.sh](scripts/1.2-makeblastdb.sh)
 
 ### 1.3 - Run BLAST  
