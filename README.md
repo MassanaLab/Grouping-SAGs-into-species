@@ -4,6 +4,8 @@
 
 ### 1.1 - Add name to header and concatenate together all protein files
 
+(in my case i have two sources...)
+
 ### 1.2 - Build BLAST Database (`makeblastdb`)
 
 ### 1.3 - Run BLAST
