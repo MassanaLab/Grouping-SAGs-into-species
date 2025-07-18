@@ -33,12 +33,10 @@
 ### 2.5 - Process ANI results  
 [2.5-use_parser_and_sorter.sh](scripts/2.5-use_parser_and_sorter.sh)
 
+Uses [good_sorting_ANI_tables.sh](scripts/good_sorting_ANI_tables.sh) and [ANI_results_parser.sh](scripts/ANI_results_parser.sh).
+
 ### 2.6 - Merge all ANI matrices  
 [2.6-cat_all_together.sh](scripts/2.6-cat_all_together.sh)
-
-#### Additional parsing and formatting scripts:
-- [ANI_results_parser.sh](scripts/ANI_results_parser.sh)
-- [good_sorting_ANI_tables.sh](scripts/good_sorting_ANI_tables.sh)
 
 
 ## 3 - Coassembly Preparation: Concatenating Reads
