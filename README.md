@@ -1,8 +1,10 @@
-# 1 - BLAST: Comparing proteins between SAGs
+# Grouping SAGs Into Species
 
-### 1.1 - Change Names & Concatenate
+## 1 - BLAST: Comparing proteins between SAGs
 
-### 1.2 - makeblastdb
+### 1.1 - Add name to header and concatenate together all protein files
+
+### 1.2 - Build BLAST Database (`makeblastdb`)
 
 ### 1.3 - BLAST
 
