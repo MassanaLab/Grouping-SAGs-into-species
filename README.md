@@ -6,37 +6,37 @@
 
 ### 1.2 - Build BLAST Database (`makeblastdb`)
 
-### 1.3 - BLAST
+### 1.3 - Run BLAST
 
-### 1.4 - Selection from BLAST results
+### 1.4 - Filter and selection the best BLAST hits
 
-# 2 - Average Nucleotide Identity (ANI)
+## 2 - Average Nucleotide Identity (ANI)
 
-### 2.1 - Copy needed scaffolds
+### 2.1 - Extract the needed scaffolds
 
-### 2.2 - Create lists
+### 2.2 - Generate input lists
 
-### 2.3 - makeblastdb for each sample
+### 2.3 - Build a BLAST databse (`makeblastdb`) for each sample
 
-### 2.4 - BLAST and calculate ANI with formula
+### 2.4 - Run BLAST and compute ANI
 
 ### 2.5 - Process ANI results
 
-### 2.6 - Put all ANI matrices together
+### 2.6 - Merge all ANI matrices
 
 
 
-# 3 - Concatenate reads from selected samples
+## 3 - Coassembly Preparation: Concatenating Reads
 
-### 3.1 - Prepare reads
+### 3.1 - Gather reads
 
 Start by putting in a folder all the reads from the different SAGs you want to assembly toghether.
 
-### 3.2 -  Prepare lists
+### 3.2 -  Create coassembly lists
 
 Make a .txt file containing all the names of needed individual SAGs that will form each coassembly. Make one .txt file per coassembly, and name this file like x_lists.txt. Ideally, put all this lists in a folder.
 
-### 3.3 - Combine reads
+### 3.3 - Merge reads for each coassembly
 
 ```
 OUT=lustre/coassemblies_v5_combined_reads
