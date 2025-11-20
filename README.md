@@ -14,12 +14,9 @@ Once we have all protein fasta files together we must generate a blast database.
 
 [1.2-makeblastdb.sh](scripts/1.2-makeblastdb.sh)
 
-### 1.3 - Run BLAST  
-[1.3-blast.sh](scripts/1.3-blast.sh)
+### 1.3 - Run BLAST + filter and select best BLAST hits
 
-### 1.4 - Filter and selection the best BLAST hits  
-[1.3-blast.sh](scripts/1.3-blast.sh) *(filtering is handled inside this script)*
-
+[1.3-blast+best_hit.sh](scripts/1.3-blast+best_hit.sh)
 
 ## 2 - Average Nucleotide Identity (ANI)
 
