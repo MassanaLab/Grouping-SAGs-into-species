@@ -10,7 +10,8 @@ The first step is to add the name of each sample to its fasta headers. In our ca
 
 ### 1.2 - Build BLAST Database (`makeblastdb`)  
 
-Once we have all protein fasta files together we must generate a blast database. We do this using `makeblastdb`, in which we indicate the fasta file we need to make the database (`-in`), the type of database we want (`-dbtype`) which in our case is a protein database (`prot`). 
+Once we have all protein fasta files together we must generate a blast database. We do this using `makeblastdb`, in which we indicate the fasta file we need to make the database (`-in`), the type of database we want (`-dbtype`) which in our case is a protein database (`prot`).
+
 [1.2-makeblastdb.sh](scripts/1.2-makeblastdb.sh)
 
 ### 1.3 - Run BLAST  
